@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ใบงานที่ 1 เรื่อง Kata Sapaan (คำทักทายในชีวิตประจำวัน)</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background-color: #f0f4f2;
+    color: #1f2937;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.5;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 14mm 16mm;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-radius: 6px;
+  }
+  @media print {
+    body {
+      background: none;
+      padding: 0;
+    }
+    .page {
+      box-shadow: none;
+      margin: 0;
+      width: 100%;
+      min-height: auto;
+      padding: 0;
+      border-radius: 0;
+    }
+    .no-print {
+      display: none !important;
+    }
+  }
+  .print-btn-bar {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .print-btn {
+    background-color: #145A32;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(20,90,50,0.25);
+  }
+  .print-btn:hover {
+    background-color: #1E8449;
+  }
+  /* Header Box */
+  .header-box {
+    border: 2px solid #145A32;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  .header-title {
+    flex: 1;
+    background-color: #145A32;
+    color: #ffffff;
+    padding: 12px 18px;
+  }
+  .header-title h1 {
+    margin: 0 0 4px 0;
+    font-size: 21px;
+    font-weight: 700;
+  }
+  .header-title p {
+    margin: 0;
+    font-size: 14px;
+    color: #E8F8F5;
+  }
+  .score-box {
+    width: 130px;
+    background-color: #FEF9E7;
+    border-left: 2px solid #145A32;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+  }
+  .score-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #7D6608;
+    margin-bottom: 4px;
+  }
+  .score-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #145A32;
+  }
+  .student-info {
+    background-color: #E9F7EF;
+    border-top: 1.5px solid #145A32;
+    padding: 9px 18px;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .student-info span strong {
+    color: #145A32;
+  }
+  .fill-line {
+    display: inline-block;
+    border-bottom: 1px dotted #333;
+    min-width: 180px;
+  }
+  .fill-line-sm {
+    display: inline-block;
+    border-bottom: 1px dotted #333;
+    min-width: 45px;
+  }
+  .indicator {
+    font-size: 13px;
+    color: #4b5563;
+    margin-bottom: 14px;
+    padding: 4px 8px;
+    background: #f8fafc;
+    border-left: 3px solid #1E8449;
+  }
+  .indicator strong {
+    color: #145A32;
+  }
+  /* Section Headings */
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #145A32;
+    margin: 14px 0 4px 0;
+    padding-bottom: 3px;
+    border-bottom: 2px solid #E9F7EF;
+  }
+  .instruction {
+    font-size: 15px;
+    margin: 0 0 12px 0;
+  }
+  /* Part 1 Matching */
+  .matching-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .match-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .match-left {
+    width: 38%;
+    background-color: #F4FBF7;
+    border: 1.5px solid #1E8449;
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: right;
+    position: relative;
+  }
+  .match-left .malay {
+    font-weight: 700;
+    font-size: 16px;
+    color: #145A32;
+  }
+  .match-left .pronounce {
+    font-size: 13.5px;
+    color: #555;
+  }
+  .match-space {
+    width: 22%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    color: #145A32;
+    font-size: 14px;
+  }
+  .dot-left {
+    color: #1E8449;
+  }
+  .dot-right {
+    color: #D4AC0D;
+  }
+  .match-right {
+    width: 40%;
+    background-color: #FEF9E7;
+    border: 1.5px solid #D4AC0D;
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: left;
+  }
+  .match-right .thai-time {
+    font-weight: 700;
+    font-size: 16px;
+    color: #7D6608;
+  }
+  .match-right .clock-range {
+    font-size: 13.5px;
+    color: #555;
+  }
+  /* Part 2 Word Bank & Dialogue */
+  .word-bank {
+    background-color: #E9F7EF;
+    border: 1.5px solid #145A32;
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .word-bank-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: #145A32;
+    margin-bottom: 6px;
+  }
+  .word-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .chip {
+    background: #ffffff;
+    border: 1px solid #1E8449;
+    border-radius: 20px;
+    padding: 3px 14px;
+    font-weight: 700;
+    font-size: 14.5px;
+    color: #111827;
+  }
+  .dialogue-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+  .dialogue-table td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 12px;
+    vertical-align: middle;
+  }
+  .spk-ahmad {
+    width: 20%;
+    background-color: #E8F8F5;
+    color: #145A32;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .spk-fatimah {
+    width: 20%;
+    background-color: #FEF9E7;
+    color: #7D6608;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .dlg-line {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+  }
+  .dlg-trans {
+    font-size: 13px;
+    font-style: italic;
+    color: #6b7280;
+    margin-top: 2px;
+  }
+  .blank-input {
+    display: inline-block;
+    border-bottom: 1.5px dotted #1f2937;
+    min-width: 185px;
+    height: 18px;
+  }
+  .footer {
+    text-align: right;
+    font-size: 13px;
+    font-style: italic;
+    color: #6b7280;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="print-btn-bar no-print">
+  <button class="print-btn" onclick="window.print()">🖨️ พิมพ์ใบงาน / บันทึกเป็น PDF</button>
+</div>
+
+<div class="page">
+  <!-- Header -->
+  <div class="header-box">
+    <div class="header-top">
+      <div class="header-title">
+        <h1>ใบงานที่ 1 เรื่อง Kata Sapaan (คำทักทายในชีวิตประจำวัน)</h1>
+        <p>กลุ่มสาระการเรียนรู้ภาษามลายู (ภม) &nbsp;|&nbsp; ชั้นอิสลามศึกษาตอนต้น (อิบติดาอียะฮ์) ปีที่ 1</p>
+      </div>
+      <div class="score-box">
+        <div class="score-label">คะแนนที่ได้</div>
+        <div class="score-value">...... / 10</div>
+      </div>
+    </div>
+    <div class="student-info">
+      <span><strong>ชื่อ - สกุล :</strong> <span class="fill-line"></span></span>
+      <span><strong>ชั้น :</strong> อต.1/<span class="fill-line-sm"></span></span>
+      <span><strong>เลขที่ :</strong> <span class="fill-line-sm"></span></span>
+    </div>
+  </div>
+
+  <div class="indicator">
+    <strong>ตัวชี้วัด :</strong> ภม 1 อต.1/1 ระบุความหมายคำศัพท์สำนวนคำทักทายพื้นฐานได้ถูกต้อง &nbsp;|&nbsp; ภม 1 อต.1/2 ใช้คำทักทายและถามสารทุกข์สุกดิบได้เหมาะสมกับช่วงเวลาและกาลเทศะ
+  </div>
+
+  <!-- Part 1 -->
+  <div class="section-title">ตอนที่ 1 : โยงเส้นจับคู่คำทักทายภาษามลายูให้ตรงกับช่วงเวลา (4 คะแนน)</div>
+  <p class="instruction"><strong>คำชี้แจง :</strong> ให้นักเรียนลากเส้นจับคู่คำทักทายภาษามลายูทางด้านซ้าย ให้ตรงกับภาพและช่วงเวลาทางด้านขวาให้ถูกต้อง</p>
+
+  <div class="matching-container">
+    <div class="match-row">
+      <div class="match-left">
+        <div class="malay">1. Selamat pagi</div>
+        <div class="pronounce">(เซอลามัต ปากี)</div>
+      </div>
+      <div class="match-space">
+        <span class="dot-left">●</span>
+        <span class="dot-right">●</span>
+      </div>
+      <div class="match-right">
+        <div class="thai-time">☀️ ตอนกลางวัน / สาย</div>
+        <div class="clock-range">(เวลา 11.00 - 14.59 น.)</div>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-left">
+        <div class="malay">2. Selamat siang</div>
+        <div class="pronounce">(เซอลามัต ซียัง)</div>
+      </div>
+      <div class="match-space">
+        <span class="dot-left">●</span>
+        <span class="dot-right">●</span>
+      </div>
+      <div class="match-right">
+        <div class="thai-time">🌙 ตอนกลางคืน / ราตรีสวัสดิ์</div>
+        <div class="clock-range">(เวลา 19.00 น. เป็นต้นไป)</div>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-left">
+        <div class="malay">3. Selamat petang / sore</div>
+        <div class="pronounce">(เซอลามัต เปอตัง / โซเร)</div>
+      </div>
+      <div class="match-space">
+        <span class="dot-left">●</span>
+        <span class="dot-right">●</span>
+      </div>
+      <div class="match-right">
+        <div class="thai-time">🌅 ตอนเช้า</div>
+        <div class="clock-range">(เวลา 06.00 - 10.59 น.)</div>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-left">
+        <div class="malay">4. Selamat malam</div>
+        <div class="pronounce">(เซอลามัต มาลัม)</div>
+      </div>
+      <div class="match-space">
+        <span class="dot-left">●</span>
+        <span class="dot-right">●</span>
+      </div>
+      <div class="match-right">
+        <div class="thai-time">🌇 ตอนบ่าย / เย็น</div>
+        <div class="clock-range">(เวลา 15.00 - 18.59 น.)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 2 -->
+  <div class="section-title">ตอนที่ 2 : สร้างบทสนทนาถาม – ตอบอย่างง่าย (6 คะแนน)</div>
+  <p class="instruction"><strong>คำชี้แจง :</strong> ให้นักเรียนเลือกคำศัพท์หรือสำนวนจากคลังคำศัพท์ด้านล่าง เติมลงในบทสนทนาระหว่าง <strong style="color:#145A32;">อาหมัด (Ahmad)</strong> และ <strong style="color:#7D6608;">ฟาติมะฮ์ (Fatimah)</strong> ที่พบกันในตอนเช้าให้สมบูรณ์ (ข้อละ 1 คะแนน)</p>
+
+  <div class="word-bank">
+    <div class="word-bank-title">คลังคำศัพท์ / สำนวน (เลือกเติมลงในช่องว่าง 1 – 6)</div>
+    <div class="word-chips">
+      <span class="chip">Assalamu'alaikum</span>
+      <span class="chip">Wa'alaikumussalam</span>
+      <span class="chip">Selamat pagi</span>
+      <span class="chip">Apa khabar?</span>
+      <span class="chip">Khabar baik, Alhamdulillah.</span>
+      <span class="chip">Jumpa lagi</span>
+    </div>
+  </div>
+
+  <table class="dialogue-table">
+    <tr>
+      <td class="spk-ahmad">👦 อาหมัด :<br><small>(Ahmad)</small></td>
+      <td>
+        <div class="dlg-line">(1) <span class="blank-input"></span> , Selamat pagi.</div>
+        <div class="dlg-trans">(ขอความสันติสุขจงมีแด่ท่าน , สวัสดีตอนเช้า)</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="spk-fatimah">👧 ฟาติมะฮ์ :<br><small>(Fatimah)</small></td>
+      <td>
+        <div class="dlg-line">(2) <span class="blank-input"></span> , (3) <span class="blank-input"></span></div>
+        <div class="dlg-trans">(และขอความสันติสุขจงมีแด่ท่านเช่นกัน , สวัสดีตอนเช้า)</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="spk-ahmad">👦 อาหมัด :<br><small>(Ahmad)</small></td>
+      <td>
+        <div class="dlg-line">(4) <span class="blank-input"></span></div>
+        <div class="dlg-trans">(สบายดีไหม?)</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="spk-fatimah">👧 ฟาติมะฮ์ :<br><small>(Fatimah)</small></td>
+      <td>
+        <div class="dlg-line">(5) <span class="blank-input"></span></div>
+        <div class="dlg-trans">(สบายดี ขอบคุณอัลลอฮ์)</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="spk-ahmad">👦 อาหมัด :<br><small>(Ahmad)</small></td>
+      <td>
+        <div class="dlg-line">Selamat tinggal, (6) <span class="blank-input"></span></div>
+        <div class="dlg-trans">(ลาก่อน , แล้วเจอกันใหม่)</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="spk-fatimah">👧 ฟาติมะฮ์ :<br><small>(Fatimah)</small></td>
+      <td>
+        <div class="dlg-line">Jumpa lagi, Assalamu'alaikum.</div>
+        <div class="dlg-trans">(แล้วเจอกันใหม่ , ขอความสันติสุขจงมีแด่ท่าน)</div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="footer">
+    เกณฑ์การผ่าน : ร้อยละ 70 ขึ้นไป (7 คะแนน) &nbsp;|&nbsp; ครูผู้สอน : นางสาวยาวารี บือสาแม
+  </div>
+</div>
+
+</body>
+</html>
